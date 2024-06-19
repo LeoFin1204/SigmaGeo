@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+
+<div class="crutch_section"></div>
+
+<form action="" method="POST">
+  {% csrf_token %}
+
+  <table>
+
+  <tr>
+    <th><label for="id_num">Номер:</label></th>
+    <td>
+      <input type="text" name="num" maxlength="5" required id="id_num" null="True">
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_grade">Класс:</label></th>
+    <td>
+      <input type="text" name="grade" maxlength="5" required id="id_grade" null="True">
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_text">Условие:</label></th>
+    <td>
+      <textarea name="text" cols="40" rows="10" required id="id_text"></textarea>
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_solution">Решение:</label></th>
+    <td>
+      <textarea name="solution" cols="40" rows="10" required id="id_solution" null="True"></textarea>
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_themes">Темы:</label></th>
+    <td>
+      <textarea name="themes" cols="40" rows="10" required id="id_themes">[]</textarea>
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_source">Источник:</label></th>
+    <td>
+      <input type="text" name="source" maxlength="250" required id="id_source" null="True">
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_year">Год:</label></th>
+    <td>
+      <input type="text" name="year" maxlength="20" required id="id_year" null="True">
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_stage">Этап:</label></th>
+    <td>
+      <input type="text" name="stage" maxlength="150" required id="id_stage" null="True">
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_author">Автор:</label></th>
+    <td>
+      <input type="text" name="author" maxlength="150" required id="id_author" null="True">
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_dif">Сложность:</label></th>
+    <td>
+      <select name="dif" required id="id_dif">
+        <option value="0" selected>0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+
+      </select>
+    </td>
+  </tr>
+
+  </table>
+  <input type="submit" value="Сохранить">
+</form>
+
+
+
+{% endblock content %}

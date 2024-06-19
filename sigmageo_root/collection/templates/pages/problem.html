@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+
+<div class="crutch_section"></div>
+
+<div class="task_frame">
+      <text class="id" id="id">#{{problem.id}}
+        {% if user.is_authenticated %}
+        <form class="add_tex_list" method="POST">{% csrf_token %}
+          <input type="hidden" name="task_request" value="{{problem.id}}">
+          <button type="submit" class="in_tex_list"></button> 
+        </form>
+        {% endif %}
+      </text>
+  {% if problem.themes %}
+  <p class="themes">Темы: 
+    {% for theme in problem.themes%}
+    <a class="theme_list" href="/sigma_geo/themes/?subsection={{theme}}">{{theme}}</a>
+    {% endfor %}
+  </p>
+  {% endif %}
+  <div class="problem">
+      <p class="problem"><text class="problem">
+          {{problem.text}}
+          {% if problem.solution %}
+          <br>
+          <br>
+          <text class='sol'>Решение:</text>
+          <br> 
+          <br>
+          {{problem.solution}}
+          {% endif %}
+      </text></p>
+      
+  </div>
+  <table class="credits">
+  <tbody>
+    {% if problem.source or problem.year or problem.stage %}
+    <tr class="credit_row">
+      <td class="cell">Источник  </td>
+      <td class="cell">
+        {% if problem.source %}
+          {{problem.source}}
+          <br>
+        {% endif %}
+        {% if problem.year %}
+          {{problem.year}}
+          <br>
+        {% endif %}
+        {% if problem.stage %}
+          {{problem.stage}}
+          <br>
+        {% endif %}
+      </td> 
+    </tr>
+    {% endif %}
+    {% if problem.num or problem.grade %}
+    <tr class="credit_row">
+      <td>Номер  </td>
+      <td>
+        {{problem.grade}}{% if problem.num and problem.grade %}.{% endif %}{{problem.num}}</td> 
+    </tr>
+    {% endif %}
+    {% if problem.author %}
+    <tr class="credit_row">
+      <td class="cell">Автор  </td>
+      <td class="cell">{{problem.author}}</td> 
+    </tr>
+    {% endif %}
+    {% if problem.dif %}
+    <tr class="credit_row">
+      <td class="cell">Сложность  </td>
+      <td class="cell">{{problem.dif}}</td> 
+    </tr>
+    {% endif %}
+  </tbody>
+  </table>
+
+  {% if is_admin %}
+    <text class="edit_button">
+      <a class="button_edit" href="/sigma_geo/editing/edit_task?id={{problem.id}}">Редактировать</a>
+    </text>
+  {% else %}
+    <text class="feedback_button">
+      <a class="feedback_mistake" href="/sigma_geo/feedback?mistake=True&id={{problem.id}}">Сообщить об ошибке</a>
+    </text>
+  {% endif %}
+</div>
+
+{% endblock content %}

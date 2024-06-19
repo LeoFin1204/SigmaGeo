@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+
+<div class="crutch_section"></div>
+
+<div class="request">
+  <text class="request_text">
+    Поиск по запросу: "{{req}}"
+  </text>
+</div>
+
+{% for problem in task_list%}
+
+<div class="task_frame_subs">
+    <text class="id" id="id"><a href='/sigma_geo/problem?id={{problem.id}}'>#{{problem.id}}</a>
+      {% if user.is_authenticated %}
+      <form class="add_tex_list" method="POST" action="{{link}}{{page.1}}&id={{problem.id}}">{% csrf_token %}
+        <input type="hidden" name="task_request" value="{{problem.id}}">
+        <button type="submit" class="in_tex_list"></button> 
+      </form>
+      {% endif %}
+    </text>
+  {% if problem.themes %}
+  <p class="themes">Темы: 
+  {% for theme in problem.themes%}
+  <a class="theme_list" href="/sigma_geo/themes/?subsection={{theme}}">{{theme}}</a>
+  {% endfor %}
+  </p>
+  {% endif %}
+  <div class="problem">
+    <p class="problem_subs"><text class="problem">
+        {{problem.text}}
+    </text>
+    <text class="sol_button" ><a class='sol_button' href="/sigma_geo/problem?id={{problem.id}}">Решение</a></text></p>
+  </div>
+</div>
+
+{% endfor %}
+
+{% endblock content %}

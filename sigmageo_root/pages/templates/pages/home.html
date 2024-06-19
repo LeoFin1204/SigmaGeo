@@ -1,0 +1,39 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+
+<img class="pic_left" src="{% static 'images/theorem1.png' %}" alt="">
+<div class="frame_right">
+  <text class="frame_title"><><><><><><><><></text>
+  <div class="frame_right_body">
+    <p class="description">
+      <text class="sigma">SigmaGeo</text> - это сайт, на котором собрано большое 
+      количество геометрических задач с российских и международных олимпиад.
+    </p>
+  </div>
+</div>
+
+<img class="pic_right" src="{% static 'images/line2.png' %}" alt="">
+<div class="frame_left">
+  <text class="frame_title"><><><><><><><><></text>
+  <div class="frame_left_body">
+    <p class="description">
+      <text class="sigma">SigmaGeo</text> - это сайт, для простого создания своих тематических листочков.
+    </p>
+  </div>
+</div>
+
+<img class="pic_left" src="{% static 'images/diploma1.png' %}" alt="">
+<div class="frame_right">
+  <text class="frame_title"><><><><><><><><></text>
+  <div class="frame_right_body">
+    <p class="description">
+      <text class="sigma">SigmaGeo</text> - это сайт, на котором вы можете подготовиться к геометрии на любой олимпиаде.
+    </p>
+  </div>
+</div>
+
+{% endblock content %}

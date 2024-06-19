@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="crutch_section"></div>
+    <p class="error"> Ошибка 404</p>
+    <p class="nope">Ой, кажется, у нас нет такой страницы</p>
+    <img src="{% static 'images/question.png' %}" alt="" class="pic_question">
+{% endblock content %}

@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <title>
+        {% block title %}
+            Untitled Document
+        {% endblock title %}
+    </title>
+</head>
+
+<body>
+    <div class="header">
+    <table class="header_table">
+    <tr>
+    <td class="logo_col">
+        <text class="header_logo"><a class="header_a" href="/sigma_geo/">SigmaGeo</a></text>
+    </td>
+    <td class="pages_col">
+        <text class="header_text"><a class="header_a" href="/sigma_geo/">Каталог</a></text>
+        {% if user.is_authenticated %}
+            <text class="header_text"><a class="header_a" href="/sigma_geo/latex">Листочек</a></text>
+        {% endif %}
+        {% if is_admin %}
+            <text class="header_text"><a class="header_a" href="/sigma_geo/editing/add_task">Редактура</a></text>
+   		{% endif %}
+    </td>
+    <td class="search_col">
+        <form class = 'search' method="GET" action="/sigma_geo/search">
+            <input class="search_input" type="text" placeholder="Искать здесь..." name="req">
+            <button class="search_button" type="submit"><img class="loop" src="{% static 'images/loop.png' %}" alt=""></button>
+        </form>
+    </td>
+    <td class="auth_col">
+        {% if user.is_authenticated %}
+           <a href="/sigma_geo/auth/logout"><img class="auth_icon" src="{% static 'images/man.png' %}" alt=""></a>
+        {% else %}
+           <a href="/sigma_geo/auth/login?next={{request.path}}"><img class="auth_icon" src="{% static 'images/lock.png' %}" alt=""></a>
+        {% endif %}
+    </td>
+    </tr>
+    </table>
+    </div>
+
+
+    {% block content %}
+    	<h1>Блок контента</h1>
+    {% endblock content %}
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <text class="slogan"> <text class="sigma_slogan">SigmaGeo</text> - геометрия для настоящих сигм</text>
+    <hr>
+    <div class="column1"><a class = 'footer'>SigmaGeo</a></div>
+    <div class="column2"><a class = 'footer'>О нас</a></div>
+    <div class="column3"><a class = 'footer'>Контакты</a></div>
+    <div class="column4"><a class = 'footer'>Обратная связь</a></div>
+
+    <p class="copyright">SirLotal©</p>
+    
+</body>
+</html>

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+
+<div class="crutch_section"></div>
+
+<div class="latex_editor_button">
+  <text class="latex_button">
+    <a class="latex_button" href="compile">LaTeX-редактор</a>
+  </text>
+</div>
+
+{% for problem in task_list%}
+
+<div class="task_frame_subs">
+    <text class="id" id="id"><a href='/sigma_geo/problem?id={{problem.id}}'>#{{problem.id}}</a>
+      {% if user.is_authenticated %}
+      <form class="add_tex_list" method="POST">{% csrf_token %}
+        <input type="hidden" name="task_request" value="{{problem.id}}">
+        <button type="submit" class="in_tex_list"></button> 
+      </form>
+      {% endif %}
+    </text>
+  {% if problem.themes %}
+  <p class="themes">Темы: 
+  {% for theme in problem.themes %}
+  <a class="theme_list" href="/sigma_geo/themes/?subsection={{theme}}">{{theme}}</a>
+  {% endfor %}
+  </p>
+  {% endif %}
+  <div class="problem">
+    <p class="problem_subs"><text class="problem">
+        {{problem.text}}
+    </text>
+  </div>
+</div>
+
+{% endfor %}
+
+{% endblock content %}

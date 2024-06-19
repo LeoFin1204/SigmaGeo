@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+
+<div class="crutch"></div>
+
+<img class="pic" src="{% static 'images/cubok1.png' %}" alt="">
+    <p class="olympic"><a href="olimps" class="olymp">Олимпиады</a></p>
+
+<img class="pic2" src="{% static 'images/books.png' %}" alt="">
+    <p class="books"><a href="books" class="olymp">Книги и журналы</a></p>
+
+<img class="pic3" src="{% static 'images/leaves.png' %}" alt="">
+    <p class="a4"><a href="themes" class="olymp">Тематические листочки</a></p>
+
+{% endblock content %}
